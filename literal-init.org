@@ -1,0 +1,170 @@
+#+TITLE: Emacs Configuration
+#+AUTHOR: gbianchetdavid
+#+DATE: 2018-04-16
+
+This configuration is partly based off of Mike Zamansky's 
+Emacs configuration.
+
+* Interface Tweaks
+  Changes to Emacs interface for easier use
+  #+BEGIN_SRC emacs-lisp
+    (setq inhibit-startup-message t)
+    (tool-bar-mode -1)
+    (fset 'yes-or-no-p 'y-or-n-p)
+    (global-set-key (kbd "<f5>") 'revert-buffer)
+  #+END_SRC
+
+* Packages
+** Try
+   Try allows the user to try a package without installing it.
+   [[https://github.com/larstvei/Try][Home Page]]
+   #+BEGIN_SRC emacs-lisp
+     (use-package try
+       :ensure t)
+   #+END_SRC
+
+** Which-Key
+   Which-Key shows command suggestions when typing emacs commands.
+   [[https://github.com/justbur/emacs-which-key][Home Page]]
+   #+BEGIN_SRC emacs-lisp
+     (use-package which-key
+       :ensure t
+       :config
+       (which-key-mode))
+   #+END_SRC
+
+** Org Mode
+   Org Mode is my religion--nuff said.
+   [[https://orgmode.org/][Home Page]]
+   #+BEGIN_SRC emacs-lisp
+     ;; Prettify bullets to make document look nicer
+     (use-package org-bullets
+       :ensure t
+       :config
+       (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
+   #+END_SRC
+
+** Cider
+   Cider is a Clojure-mode add on that makes developing clojure easy.
+   [[https://github.com/clojure-emacs/cider][Home Page]]
+   #+BEGIN_SRC emacs-lisp
+     (use-package cider
+       :ensure t)
+   #+END_SRC
+
+** Rainbow Mode
+   Rainbow mode finds colours written in words, rgb, or hex and makes
+   the background colour of the string in question that same colour.
+   [[https://github.com/emacsmirror/rainbow-mode][Home Page]]
+   #+BEGIN_SRC emacs-lisp
+     (use-package rainbow-mode
+       :ensure t)
+   #+END_SRC
+
+** Emmet Mode
+   Emmet mode expands words into html entities.
+   [[https://github.com/smihica/emmet-mode][Home Page]]
+   #+BEGIN_SRC emacs-lisp
+     (use-package emmet-mode
+       :ensure t)
+   #+END_SRC
+
+** Swiper
+   Swiper no Swiping..! Better incremental search in buffer.
+   [[https://github.com/abo-abo/swiper][Home Page]]
+   #+BEGIN_SRC emacs-lisp
+     ;; Counsel is a dependency of Swiper
+     (use-package counsel
+       :ensure t)
+
+     (use-package ivy
+       :ensure t
+       :diminish (ivy-mode)
+       :bind (("C-x b" . ivy-switch-buffer))
+       :config
+       (ivy-mode 1)
+       (setq ivy-use-virtual-buffers t)
+       (setq ivy-display-style 'fancy))
+
+     (use-package swiper
+       :ensure t
+       :bind (("C-s" . swiper)
+              ("C-r" . swiper)
+              ("C-c C-r" . ivy-resume)
+              ("M-x" . counsel-M-x)
+              ("C-x C-f" . counsel-find-file))
+       :config
+       (progn
+         (ivy-mode 1)
+         (setq ivy-use-virtual-buffers t)
+         (setq ivy-display-style 'fancy)
+         (define-key read-expression-map (kbd "C-r") 'counsel-expression-history)))
+    #+END_SRC
+
+** Autocomplete
+   Autocomplete provides autocomplete for everything (really!).
+   [[https://github.com/auto-complete/auto-complete][Home Page]]
+   #+BEGIN_SRC emacs-lisp
+     (use-package auto-complete
+       :ensure t
+       :init (progn
+               (ac-config-default)
+               (global-auto-complete-mode t)))
+   #+END_SRC
+
+** IBuffer
+   IBuffer is an interactive interface for the buffer list.
+   #+BEGIN_SRC emacs-lisp
+     (defalias 'list-buffers 'ibuffer)
+   #+END_SRC
+** Undo-Tree
+   Undo-Tree is a package that improves the undo functionality of emacs by
+   providing a "redo" button and a visualized history of work to undo to.
+   [[https://gist.github.com/mori-dev/301447][Home Page (just a Gist)]]
+   #+BEGIN_SRC emacs-lisp
+     (use-package undo-tree
+       :ensure t
+       :init
+       (global-undo-tree-mode))
+   #+END_SRC
+
+** Hungry Delete Mode
+   This mode deletes all whitespace characters between `(point)' and the
+   next non-whitespace character (forwards and back).
+   [[https://github.com/nflath/hungry-delete/blob/master/hungry-delete.el][Home Page]]
+   #+BEGIN_SRC emacs-lisp
+     (use-package hungry-delete
+       :ensure t
+       :config
+       (global-hungry-delete-mode))
+   #+END_SRC
+
+** Web-Mode
+   Web-Mode is the hidden-blade of web developing. Makes editing html and
+   html-ish (ejs, jsp, etc) files super easy.
+   [[http://web-mode.org/][Home Page]]
+   #+BEGIN_SRC emacs-lisp
+     (use-package web-mode
+       :ensure t
+       :config
+       (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+       ; Tell Web-Mode about templating engines it should know about
+       ; (setq web-mode-engines-alist
+             ; '(("django"    . "\\.html\\'")))
+       (setq web-mode-ac-sources-alist
+             '(("css" . (ac-source-css-property))
+               ("html" . (ac-source-words-in-buffer ac-source-abbrev))))
+       (setq web-mode-enable-auto-closing t)
+       (setq web-mode-enable-auto-quoting t))
+   #+END_SRC
+
+** FlyCheck
+   FlyCheck is an on-the-fly synthax checker for various languages.
+   [[http://www.flycheck.org/en/latest/][Home Page]]
+   #+BEGIN_SRC emacs-lisp
+     (use-package flycheck
+       :ensure t
+       :init
+       (global-flycheck-mode t))
+   #+END_SRC
+

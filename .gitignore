@@ -1,0 +1,9 @@
+# Ignore elpa downloads
+elpa/
+
+# Ignore all auto-saved files (ending with `~')
+*~
+
+# Ignore all .data files
+*.data
+*.dat
