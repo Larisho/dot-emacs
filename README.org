@@ -1,0 +1,8 @@
+* Emacs Configuration
+** init.el
+   contains the initialization file for emacs
+** literal-init.org
+   contains a list of all the configurations: description and source code
+   to achieve it.
+** literal-init.el
+   compiled output from literal-init.org (which is compiled by init.el).
