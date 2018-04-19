@@ -2,8 +2,12 @@
 elpa/
 
 # Ignore all auto-saved files (ending with `~')
-*~
+*.*~
 
 # Ignore all .data files
 *.data
 *.dat
+
+# Ignore the recentf file because it's a list of recently opened files
+recentf
+recentf~
