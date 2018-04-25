@@ -59,7 +59,7 @@ Emacs configuration.
    #+BEGIN_SRC emacs-lisp
      (use-package rainbow-mode
        :ensure t)
-   #+END_SRC
+   #+END_SRC 
 
 ** Emmet Mode
    Emmet mode expands words into html entities.

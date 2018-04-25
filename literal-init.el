@@ -89,3 +89,10 @@
   :ensure t
   :init
   (global-flycheck-mode t))
+
+(use-package smartparens
+  :ensure t
+  :config
+  (use-package smartparens-config)
+  (smartparens-global-mode t)
+  (show-smartparens-global-mode t))
