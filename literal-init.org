@@ -179,3 +179,16 @@ Emacs configuration.
        (smartparens-global-mode t)
        (show-smartparens-global-mode t))
    #+END_SRC
+
+** Emmet Mode
+   Emmet mode makes writing HTML and CSS much faster by using shortcuts.
+   [[https://github.com/smihica/emmet-mode][Home Page]]
+   #+BEGIN_SRC emacs-lisp
+     (use-package emmet-mode
+       :ensure t
+       :config
+       (add-hook 'sgml-mode-hook 'emmet-mode) ;; Auto-start on any markup modes
+       (add-hook 'web-mode-hook 'emmet-mode) ;; Auto-start on any markup modes
+       (add-hook 'css-mode-hook  'emmet-mode) ;; enable Emmet's css abbreviation.
+       )
+   #+END_SRC
