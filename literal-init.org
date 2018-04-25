@@ -168,3 +168,14 @@ Emacs configuration.
        (global-flycheck-mode t))
    #+END_SRC
 
+** Smartparens
+   Smartparens is a minor mode for dealing with pairs in Emacs.
+   [[https://github.com/Fuco1/smartparens][Home Page]]
+   #+BEGIN_SRC emacs-lisp
+     (use-package smartparens
+       :ensure t
+       :config
+       (use-package smartparens-config)
+       (smartparens-global-mode t)
+       (show-smartparens-global-mode t))
+   #+END_SRC
