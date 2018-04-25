@@ -9,18 +9,14 @@
 (require 'package)
 (setq package-enable-at-startup nil)
 
-(defvar init/http)
-
 ;; Windows doesn't support SSL
-(setq init/http (if (string-equal (system-name) "windows-nt")
-		    "http"
-		  "https"))
-
-(add-to-list 'package-archives
-	     '("melpa" . (concat init/http "://melpa.org/packages/")))
-(when (< emacs-major-version 24)
-  ;; For important compatibility libraries like cl-lib
-  (add-to-list 'package-archives '("gnu" . (concat init/http "://elpa.gnu.org/packages/"))))
+(let* ((no-ssl (and (memq system-type '(windows-nt ms-dos))
+                    (not (gnutls-available-p))))
+       (url (concat (if no-ssl "http" "https") "://melpa.org/packages/"))
+       (gnu-url (concat (if no-ssl "http" "https") "://gnu.elpa.org/packages/")))
+  (add-to-list 'package-archives (cons "melpa" url) t)
+  (when (version< emacs-version "24.4")
+    (add-to-list 'package-archives (cons "gnu" gnu-url) t)))
 
 (package-initialize)
 
@@ -32,7 +28,7 @@
  '(custom-enabled-themes (quote (wombat)))
  '(package-selected-packages
    (quote
-    (hungry-delete flycheck web-mode undo-tree ox-reveal htmlize which-key use-package try rainbow-mode paredit org-bullets emmet-mode counsel company clojure-mode-extra-font-locking cider auto-complete))))
+    (smartparens-config which-key web-mode use-package undo-tree try smartparens rainbow-mode paredit org-bullets hungry-delete htmlize flycheck emmet-mode counsel company clojure-mode-extra-font-locking cider auto-complete))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
