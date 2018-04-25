@@ -28,7 +28,7 @@
  '(custom-enabled-themes (quote (wombat)))
  '(package-selected-packages
    (quote
-    (smartparens-config which-key web-mode use-package undo-tree try smartparens rainbow-mode paredit org-bullets hungry-delete htmlize flycheck emmet-mode counsel company clojure-mode-extra-font-locking cider auto-complete))))
+    (magit smartparens-config which-key web-mode use-package undo-tree try smartparens rainbow-mode paredit org-bullets hungry-delete htmlize flycheck emmet-mode counsel company clojure-mode-extra-font-locking cider auto-complete))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

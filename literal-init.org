@@ -192,3 +192,14 @@ Emacs configuration.
        (add-hook 'css-mode-hook  'emmet-mode) ;; enable Emmet's css abbreviation.
        )
    #+END_SRC
+
+** Magit
+   Magit! A Git Poreclain Inside Emacs!
+   [[https://magit.vc/][Home Page]]
+   #+BEGIN_SRC emacs-lisp
+     (use-package magit
+       :ensure t
+       :init
+       (progn
+       (bind-key "C-x g" 'magit-status)))
+   #+END_SRC
