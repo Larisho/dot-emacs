@@ -203,12 +203,21 @@ Emacs configuration.
        (bind-key "C-x g" 'magit-status)))
    #+END_SRC
 * Functions
-** Input `//TODO(gab):'
+** Insert `// TODO(gab): '
    #+BEGIN_SRC emacs-lisp
-     (defun insert-todo-stmt ()
-       "Insert text `// TODO(gab):' at point moving point forward."
+     (defun insert-comment-todo ()
+       "Insert text `// TODO(gab): ' at point moving point forward."
        (interactive)
        (insert "// TODO(gab): "))
 
-     (global-set-key (kbd "C-c C-t") 'insert-todo-stmt)
+     (global-set-key (kbd "C-c t") 'insert-comment-todo)
+   #+END_SRC
+** Insert `// NOTE(gab): '
+   #+BEGIN_SRC emacs-lisp
+     (defun insert-comment-note ()
+       "Insert text `// NOTE(gab): ' at point moving point forward."
+       (interactive)
+       (insert "// NOTE(gab): "))
+
+     (global-set-key (kbd "C-c n") 'insert-comment-note)
    #+END_SRC

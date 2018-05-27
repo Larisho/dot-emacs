@@ -110,3 +110,17 @@
   :init
   (progn
   (bind-key "C-x g" 'magit-status)))
+
+(defun insert-comment-todo ()
+  "Insert text `// TODO(gab): ' at point moving point forward."
+  (interactive)
+  (insert "// TODO(gab): "))
+
+(global-set-key (kbd "C-c t") 'insert-comment-todo)
+
+(defun insert-comment-note ()
+  "Insert text `// NOTE(gab): ' at point moving point forward."
+  (interactive)
+  (insert "// NOTE(gab): "))
+
+(global-set-key (kbd "C-c n") 'insert-comment-note)
