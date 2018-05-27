@@ -192,7 +192,6 @@ Emacs configuration.
        (add-hook 'css-mode-hook  'emmet-mode) ;; enable Emmet's css abbreviation.
        )
    #+END_SRC
-
 ** Magit
    Magit! A Git Poreclain Inside Emacs!
    [[https://magit.vc/][Home Page]]
@@ -202,4 +201,14 @@ Emacs configuration.
        :init
        (progn
        (bind-key "C-x g" 'magit-status)))
+   #+END_SRC
+* Functions
+** Input `//TODO(gab):'
+   #+BEGIN_SRC emacs-lisp
+     (defun insert-todo-stmt ()
+       "Insert text `// TODO(gab):' at point moving point forward."
+       (interactive)
+       (insert "// TODO(gab): "))
+
+     (global-set-key (kbd "C-c C-t") 'insert-todo-stmt)
    #+END_SRC
