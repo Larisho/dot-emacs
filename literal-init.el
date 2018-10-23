@@ -4,7 +4,9 @@
 (global-set-key (kbd "<f5>") 'revert-buffer)
 (column-number-mode nil)
 (line-number-mode -1)
-(add-hook 'prog-mode-hook 'display-line-numbers-mode)
+
+(unless (version< emacs-version "26")
+  (add-hook 'prog-mode-hook 'display-line-numbers-mode))
 
 (use-package darktooth-theme
   :ensure t)
@@ -211,6 +213,9 @@
 	    (cond ((memq (plist-get sys :category) '(coding-category-undecided coding-category-utf-8))
 		   "UTF-8")
 		  (t (upcase (symbol-name (plist-get sys :name))))))
+	  (if line-number-mode
+	      (concat " " (what-line))
+	    "")
 	  "  "))
 
 (defun my/vcs ()
