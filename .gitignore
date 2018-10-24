@@ -11,3 +11,6 @@ elpa/
 # Ignore the recentf file because it's a list of recently opened files
 recentf
 recentf~
+
+# Ignore generated lisp files
+literal-init.el
