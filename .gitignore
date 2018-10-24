@@ -1,6 +1,11 @@
 # Ignore elpa downloads
 elpa/
 
+# Ignore caches
+eshell/
+server/
+url/
+
 # Ignore all auto-saved files (ending with `~')
 *.*~
 
