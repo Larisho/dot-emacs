@@ -481,15 +481,17 @@ Emacs configuration.
        :config
        (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
        (add-to-list 'auto-mode-alist '("\\.ejs\\'" . web-mode))
+       (add-to-list 'auto-mode-alist '("\\.css\\'" . web-mode))
        ; Tell Web-Mode about templating engines it should know about
        (setq web-mode-engines-alist
-             '(("ejs"    . "\\.ejs\\'")))
+	     '(("ejs"    . "\\.ejs\\'")))
        (setq web-mode-ac-sources-alist
-             '(("css" . (ac-source-css-property))
-               ("html" . (ac-source-words-in-buffer ac-source-abbrev))))
+	     '(("css" . (ac-source-css-property))
+	       ("html" . (ac-source-words-in-buffer ac-source-abbrev))))
        (setq web-mode-enable-auto-pairing nil)
        (setq web-mode-enable-auto-closing t)
-       (setq web-mode-enable-auto-quoting t))
+       (setq web-mode-enable-auto-quoting t)
+       (setq web-mode-css-indent-offset 2))
    #+END_SRC
 
 ** Javascript-IDE (JS2)
@@ -604,6 +606,19 @@ Emacs configuration.
      (global-set-key (kbd "C-c n") 'my/insert-comment-note)
    #+END_SRC
 
+** Duplicate current line
+   #+BEGIN_SRC emacs-lisp
+     (defun my/duplicate-line ()
+       "Duplicate the line at `(point)' and write it to the line below."
+       (interactive)
+       (let ((start (line-beginning-position))
+	     (end (line-end-position)))
+	 (goto-char end)
+	 (newline)
+	 (insert (buffer-substring start end))))
+
+     (global-set-key (kbd "C-c d") 'my/duplicate-line)
+   #+END_SRC
 ** Next line and center:
    #+BEGIN_SRC emacs-lisp
      (defun my/next-line-and-center ()
