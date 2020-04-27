@@ -511,6 +511,18 @@ Emacs configuration.
      ;; Consider adding rjsx-mode to the auto-mode-alist for `(,(rx ".js" string-end))
    #+END_SRC
 
+** Rust Mode
+   Emacs Mode for editted Rust source code
+   [[https://github.com/rust-lang/rust-mode][Home Page]]
+   #+BEGIN_SRC emacs-lisp
+     (use-package rust-mode
+       :ensure t)
+
+     (use-package flycheck-rust
+       :ensure t
+       :config (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
+   #+END_SRC
+
 ** JSON Mode
    #+BEGIN_SRC emacs-lisp
      (use-package json-mode
@@ -520,6 +532,11 @@ Emacs configuration.
        (setq js-indent-level 2))
    #+END_SRC
 
+** YAML Mode
+   #+BEGIN_SRC emacs-lisp
+     (use-package yaml-mode
+       :ensure t)
+   #+END_SRC
 ** FlyCheck
    FlyCheck is an on-the-fly synthax checker for various languages.
    [[http://www.flycheck.org/en/latest/][Home Page]]

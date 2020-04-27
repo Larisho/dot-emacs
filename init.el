@@ -67,7 +67,7 @@
  '(haskell-process-suggest-remove-import-lines t)
  '(package-selected-packages
    (quote
-    (all-the-icons darktooth-theme which-key web-mode use-package undo-tree try tide smartparens rjsx-mode rainbow-mode org-bullets magit json-mode hungry-delete haskell-mode emmet-mode counsel cider auto-complete))))
+    (rust-mode all-the-icons darktooth-theme which-key web-mode use-package undo-tree try tide smartparens rjsx-mode rainbow-mode org-bullets magit json-mode hungry-delete haskell-mode emmet-mode counsel cider auto-complete))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
