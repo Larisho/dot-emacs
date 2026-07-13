@@ -1,7 +1,7 @@
 #+TITLE: Emacs Configuration
 #+AUTHOR: gbianchetdavid
 #+DATE: 2018-04-16
-
+test test
 This configuration is partly based off of Mike Zamansky's and the Doom 
 Emacs configuration.
 
@@ -13,17 +13,30 @@ Emacs configuration.
      (tool-bar-mode -1)
      (fset 'yes-or-no-p 'y-or-n-p)
      (global-set-key (kbd "<f5>") 'revert-buffer)
-     (column-number-mode nil)
-     (line-number-mode -1)
+     (indent-tabs-mode nil)
+
+     (unless (file-directory-p "~/.emacs.d/auto-saves")
+       (make-directory "~/.emacs.d/auto-saves"))
+
+     (setq backup-directory-alist '(("." . "~/.emacs.d/auto-saves")))
+     (setq undo-tree-auto-save-history nil)
+
+     (if (version< emacs-version "26")
+	 (progn
+	   (column-number-mode nil)
+	   (line-number-mode -1))
+       (global-display-line-numbers-mode t))
 
      (unless (version< emacs-version "26")
        (add-hook 'prog-mode-hook 'display-line-numbers-mode))
    #+END_SRC
 
-** Darktooth
+** Tomorrow Night Theme
    #+BEGIN_SRC emacs-lisp
-     (use-package darktooth-theme
-       :ensure t)
+     (unless (package-installed-p 'color-theme-sanityinc-tomorrow)
+       (package-install 'color-theme-sanityinc-tomorrow))
+     (require 'sanityinc-tomorrow-night-theme)
+     (load-theme 'sanityinc-tomorrow-night t)
    #+END_SRC
 
 ** All the Icons
@@ -390,14 +403,6 @@ Emacs configuration.
    #+BEGIN_SRC emacs-lisp
      (use-package rainbow-mode
        :ensure t)
-   #+END_SRC 
-
-** Emmet Mode
-   Emmet mode expands words into html entities.
-   [[https://github.com/smihica/emmet-mode][Home Page]]
-   #+BEGIN_SRC emacs-lisp
-     (use-package emmet-mode
-       :ensure t)
    #+END_SRC
 
 ** Swiper
@@ -419,7 +424,7 @@ Emacs configuration.
 
      (use-package swiper
        :ensure t
-       :bind (("C-s" . swiper)
+       :bind (("C-s" . swiper-isearch)
               ("C-r" . swiper)
               ("C-c C-r" . ivy-resume)
               ("M-x" . counsel-M-x)

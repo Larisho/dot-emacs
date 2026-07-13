@@ -34,8 +34,7 @@
 
 ;; Windows doesn't support SSL in emacs-version < 26
 (if (my/version>= emacs-version "26")
-    (progn
-      (add-to-list 'package-archives (cons "melpa" "https://melpa.org/packages/") t))
+    (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
   (progn
     (let* ((no-ssl (my/is-windows-and-no-ssl))
 	   (url (my/build-proper-url (not no-ssl) "melpa.org/packages/"))
@@ -62,12 +61,8 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(haskell-process-auto-import-loaded-modules t)
- '(haskell-process-log t)
- '(haskell-process-suggest-remove-import-lines t)
  '(package-selected-packages
-   (quote
-    (rust-mode all-the-icons darktooth-theme which-key web-mode use-package undo-tree try tide smartparens rjsx-mode rainbow-mode org-bullets magit json-mode hungry-delete haskell-mode emmet-mode counsel cider auto-complete))))
+   '(rust-mode all-the-icons darktooth-theme which-key web-mode use-package undo-tree try tide smartparens rjsx-mode rainbow-mode org-bullets magit json-mode hungry-delete haskell-mode emmet-mode counsel cider auto-complete)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
