@@ -50,7 +50,7 @@
   (package-refresh-contents)
   (package-install 'use-package))
 
-(org-babel-load-file (expand-file-name "~/.emacs.d/literal-init.org"))
+(load-file (expand-file-name "~/.emacs.d/custom-init.el"))
 
 (provide 'init)
 ;;; init.el ends here
@@ -62,7 +62,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(rust-mode all-the-icons darktooth-theme which-key web-mode use-package undo-tree try tide smartparens rjsx-mode rainbow-mode org-bullets magit json-mode hungry-delete haskell-mode emmet-mode counsel cider auto-complete)))
+   '(company rust-mode all-the-icons darktooth-theme which-key web-mode use-package undo-tree try tide smartparens rjsx-mode rainbow-mode org-bullets magit json-mode hungry-delete haskell-mode counsel cider)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
