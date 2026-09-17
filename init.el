@@ -61,8 +61,9 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(auth-source-save-behavior nil)
  '(package-selected-packages
-   '(company rust-mode all-the-icons darktooth-theme which-key web-mode use-package undo-tree try tide smartparens rjsx-mode rainbow-mode org-bullets magit json-mode hungry-delete haskell-mode counsel cider)))
+   '(lsp-treemacs lsp-ivy lsp-ui lsp-mode company rust-mode all-the-icons darktooth-theme which-key web-mode use-package undo-tree try tide smartparens rjsx-mode rainbow-mode org-bullets magit json-mode hungry-delete haskell-mode counsel cider)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

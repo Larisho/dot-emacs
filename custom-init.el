@@ -1,8 +1,19 @@
+;;; Custom Emacs Configuration Init
+
+;; UI Changes
 (setq inhibit-startup-message t)
 (tool-bar-mode -1)
 (fset 'yes-or-no-p 'y-or-n-p)
-(global-set-key (kbd "<f5>") 'revert-buffer)
 (indent-tabs-mode nil)
+(setq org-adapt-indentation t)
+(setq use-package-always-ensure t)
+
+;; Keybinds
+(global-set-key (kbd "<f5>") 'revert-buffer)
+(global-set-key (kbd "<C-up>") 'shrink-window)
+(global-set-key (kbd "<C-down>") 'enlarge-window)
+(global-set-key (kbd "<C-left>") 'shrink-window-horizontally)
+(global-set-key (kbd "<C-right>") 'enlarge-window-horizontally)
 
 (unless (file-directory-p "~/.emacs.d/auto-saves")
   (make-directory "~/.emacs.d/auto-saves"))
@@ -31,7 +42,6 @@
 (load-theme 'sanityinc-tomorrow-night t)
 
 (use-package all-the-icons
-  :ensure t
   :config
   (setq inhibit-compacting-font-caches t))
 
@@ -313,34 +323,27 @@ Uses `all-the-icons-octicon' to fetch the icon."
 
 (if t (force-mode-line-update t))
 
-(use-package try
-  :ensure t)
+(use-package try)
 
 (use-package which-key
-  :ensure t
   :config
   (which-key-mode))
 
 ;; Prettify bullets to make document look nicer
 (use-package org-bullets
-  :ensure t
   :config
   (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
 
 (global-visual-line-mode t)
 
-(use-package cider
-  :ensure t)
+(use-package cider)
 
-(use-package rainbow-mode
-  :ensure t)
+(use-package rainbow-mode)
 
 ;; Counsel is a dependency of Swiper
-(use-package counsel
-  :ensure t)
+(use-package counsel)
 
 (use-package ivy
-  :ensure t
   :diminish (ivy-mode)
   :bind (("C-x b" . ivy-switch-buffer))
   :config
@@ -349,7 +352,6 @@ Uses `all-the-icons-octicon' to fetch the icon."
   (setq ivy-display-style 'fancy))
 
 (use-package swiper
-  :ensure t
   :bind (("C-s" . swiper-isearch)
          ("C-r" . swiper)
          ("C-c C-r" . ivy-resume)
@@ -363,24 +365,20 @@ Uses `all-the-icons-octicon' to fetch the icon."
     (define-key read-expression-map (kbd "C-r") 'counsel-expression-history)))
 
 (use-package company
-  :ensure t
   :config
   (add-hook 'after-init-hook 'global-company-mode))
 
 (defalias 'list-buffers 'ibuffer)
 
 (use-package undo-tree
-  :ensure t
   :init
   (global-undo-tree-mode))
 
 (use-package hungry-delete
-  :ensure t
   :config
   (global-hungry-delete-mode))
 
 (use-package web-mode
-  :ensure t
   :config
   (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.ejs\\'" . web-mode))
@@ -397,31 +395,25 @@ Uses `all-the-icons-octicon' to fetch the icon."
   (setq web-mode-css-indent-offset 2))
 
 (use-package js2-mode
-  :ensure t
   :config (add-to-list 'auto-mode-alist
                        `(,(rx ".js" string-end) . js2-mode)))
 
 (use-package rjsx-mode
-  :ensure t
   :config (add-to-list 'auto-mode-alist
                        '("components\\/.*\\.js\\'" . rjsx-mode)))
 ;; Consider adding rjsx-mode to the auto-mode-alist for `(,(rx ".js" string-end))
 
-(use-package rust-mode
-  :ensure t)
+(use-package rust-mode)
 
 (use-package flycheck-rust
-  :ensure t
   :config (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
 
 (use-package json-mode
-  :ensure t
   :config
   (make-local-variable 'js-indent-level)
   (setq js-indent-level 2))
 
-(use-package yaml-mode
-  :ensure t)
+(use-package yaml-mode)
 
 (use-package lsp-mode
   :init
@@ -429,16 +421,24 @@ Uses `all-the-icons-octicon' to fetch the icon."
   (setq lsp-keymap-prefix "C-c l")
   :hook
   (add-hook 'rust-mode-hook 'lsp-deferred)
+  (add-hook 'python-mode-hook 'lsp-deferred)
   :commands
   (lsp lsp-deferred))
 
-(use-package lsp-ui :commands lsp-ui-mode)
+(use-package lsp-ui
+  :commands lsp-ui-mode)
 
-(use-package lsp-ivy :commands lsp-ivy-workspace-symbol)
-(use-package lsp-treemacs :commands lsp-treemacs-errors-list)
+(use-package lsp-ivy
+  :commands lsp-ivy-workspace-symbol)
+
+(use-package lsp-treemacs
+  :commands lsp-treemacs-errors-list)
+
+(use-package dap-mode)
+(use-package dap-python)
+;; (use-package dap-LANGUAGE) to load the dap adapter for LANGUAGE
 
 (use-package flycheck
-  :ensure t
   :init (global-flycheck-mode t)
   :config (progn
             ;; disable jshint since we prefer eslint checking
@@ -458,7 +458,6 @@ Uses `all-the-icons-octicon' to fetch the icon."
                                   '(json-jsonlist)))))
 
 (use-package smartparens
-  :ensure t
   :config
   (use-package smartparens-config)
   (smartparens-global-mode t)
@@ -467,7 +466,6 @@ Uses `all-the-icons-octicon' to fetch the icon."
   (sp-local-pair 'web-mode "<" ">"))
 
 (use-package magit
-  :ensure t
   :init
   (progn
   (bind-key "C-x g" 'magit-status)))
