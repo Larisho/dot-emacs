@@ -6,7 +6,10 @@
 
 ;;; Code:
 
+;; Setup package manager
 (require 'package)
+(require 'use-package-ensure)
+(setq use-package-always-ensure t)
 (setq package-enable-at-startup nil)
 
 ;;; Handy utility functions for legibility
